@@ -1,10 +1,10 @@
 fetch('http://localhost:3000/api/products')
-    .then(data => {
-        return data.json();
-    })
-    .then(products => {
-        insertProductCards(products);
-    });
+  .then(data => {
+    return data.json();
+  })
+  .then(products => {
+    insertProductCards(products);
+  });
 
 /**
  * Insert product cards into the page
@@ -12,19 +12,14 @@ fetch('http://localhost:3000/api/products')
  * @param {[any]} products - array of product information
  */
 function insertProductCards(products) {
-    console.log(products);
-    const itemHolder = document.getElementById('items');
-    for (let i = 0; i < products.length; i++) {
-        console.log(products[i]);
-        const product = products[i];
-        // TODO Create a URLSearchParams object from the current URL
-        // const urlParams = new URLSearchParams(window.location.search);
+  console.log(products);
+  const itemHolder = document.getElementById('items');
+  for (let i = 0; i < products.length; i++) {
+    console.log(products[i]);
+    const product = products[i];
 
-        // Get individual parameters
-        // const id = urlParams.get('_id');
-
-        itemHolder.innerHTML += `
-          <a href="./product.html?id=42">
+    itemHolder.innerHTML += `
+          <a href="./product.html?id=${product._id}">
             <article>
               <img src="${product.imageUrl}" alt="${product.altTxt}">
               <h3 class="productName">${product.name}</h3>
@@ -32,6 +27,6 @@ function insertProductCards(products) {
             </article>
           </a>
         `;
-    }
+  }
 
 }
