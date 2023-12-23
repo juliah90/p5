@@ -13,7 +13,10 @@ fetch(`http://localhost:3000/api/products/${id}`)
     });
 
 
-
+/**
+ * 
+ * @param {any} product - individual product information selected by user
+ */
 function insertProductInformation(product) {
     console.log(product)
     const productImage = document.querySelector('.item__img');
@@ -29,8 +32,26 @@ function insertProductInformation(product) {
         productColors.innerHTML += `<option value="${color}">${color}</option>`;
     });
 }
+const cartButton = document.getElementById('addToCart');
 
+cartButton.addEventListener('click', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const selectedColor = document.getElementById("colors").value;
+    const selectedQuantity = parseInt(document.getElementById('quantity').value);
 
-//TODO send info to local storage from product page
+    // Create a new product object
+    const newProduct = { id, selectedColor, selectedQuantity };
 
-//TODO if product color/id is same only add to quantity
+    // Find existing product in the cart based on selected color
+    const existingProduct = cart.find((product) => product.selectedColor === newProduct.selectedColor);
+
+    if (existingProduct) {
+        // If existing product is found, update the quantity
+        existingProduct.selectedQuantity += newProduct.selectedQuantity;
+    } else {
+        // If no existing product is found, add the new product to the cart
+        cart.push(newProduct);
+    }
+    // Update the local storage with the modified cart
+    localStorage.setItem('cart', JSON.stringify(cart));
+});
