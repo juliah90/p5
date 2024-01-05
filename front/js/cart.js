@@ -13,7 +13,10 @@ fetch('http://localhost:3000/api/products')
     const cartContainer = document.getElementById('cart__items');
     // console.log(cartContainer)
 
-    // Function to create and insert a cart item element
+    /**
+     * 
+     * @param {any}  -   Function to create and insert a cart item element
+     */
     function createCartItem(cartItem) {
       const product = products.find(p => cartItem.id === p._id)
       console.log(product)
@@ -81,7 +84,10 @@ fetch('http://localhost:3000/api/products')
 
       cartContainer.appendChild(cartItemElement);
     }//its working, gotta figure out update
-
+/**
+ * 
+ * @param {any} cartArray - update local storage with new item information
+ */
     function updateLocalStorage(cartArray) {
       localStorage.setItem('cart', JSON.stringify(cartArray));
     }// local storage update for sure this time
@@ -90,6 +96,11 @@ fetch('http://localhost:3000/api/products')
     // Insert each item from the storedArray into the cartContainer
     cart.forEach(createCartItem);
   })
+  /**
+   * 
+   * @param {any} price - update total price in webpage and local storage
+   * @param {any} quantity - update total quantity in webpage and local storage
+   */
 function updateTotals(price, quantity) {
   // Get the current values from page
   const currentQuantity = parseInt(totalQuantityElement.innerText) || 0;
@@ -105,6 +116,4 @@ function updateTotals(price, quantity) {
   console.log(totalQuantityElement.innerText)
   console.log(totalPriceElement.innerText)
 }
-//these things have to be in side the innerhtml brackets or you will go crazy
-//element.closest()
-//quantity has to change in localstorage
+//TODO check user input and set error messages for incorrect/wrong info
