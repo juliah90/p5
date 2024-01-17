@@ -43,7 +43,7 @@ cartButton.addEventListener('click', () => {
     const newProduct = { id, selectedColor, selectedQuantity };
 
     // Find existing product in the cart based on selected color
-    const existingProduct = cart.find((product) => product.selectedColor === newProduct.selectedColor);
+    const existingProduct = cart.find((product) => product.selectedColor === newProduct.selectedColor & product.id === newProduct.id);
 
     if (existingProduct) {
         // If existing product is found, update the quantity
