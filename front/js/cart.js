@@ -179,16 +179,16 @@ emailElement.addEventListener('change', ($event) => {
     emailMessageElement.innerText = 'Please enter a valid email'
   }
 })
-// const filledFormElements = ()
+const filledFormElements = (firstNameElement, lastNameElement, addressElement, cityElement, emailElement)
 
 orderButton.addEventListener('click', function (event) {
   event.preventDefault()
-  // if(filledFormElements){
-  //   console.log('okay')
-  // }
-  // else{
-  //   console.log('nope')
-  // }
+  if(filledFormElements){
+    console.log('okay')
+  }
+  else{
+    console.log('nope')
+  }
 
   //TODO validate fields when clicked
   //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
