@@ -127,7 +127,7 @@ const lastNameMessageElement = document.getElementById('lastNameErrorMsg')
 const addressMessageElement = document.getElementById('addressErrorMsg')
 const cityMessageElement = document.getElementById('cityErrorMsg')
 const emailMessageElement = document.getElementById('emailErrorMsg')
-// const nameRegex = ^[a-zA-Z]+
+
 firstNameElement.addEventListener('change', ($event) => {
   const firstName = $event.target.value
   const nameRegex = /^[a-zA-Z]+$/;
@@ -139,49 +139,49 @@ firstNameElement.addEventListener('change', ($event) => {
   }
   console.log(nameRegex.test(firstName));
 })
-lastNameElement.addEventListener('change', ($event) =>{
+lastNameElement.addEventListener('change', ($event) => {
   const lastName = $event.target.value
   const nameRegex = /^[a-zA-Z]+$/;
-  if (nameRegex.test(lastName)){
+  if (nameRegex.test(lastName)) {
     lastNameMessageElement.innerText = '';
   }
   else {
     lastNameMessageElement.innerText = 'Please enter a valid last name'
   }
 })
-addressElement.addEventListener('change', ($event) =>{
+addressElement.addEventListener('change', ($event) => {
   const address = $event.target.value
   const addressRegex = /^((\d)+) [a-zA-Z0-9\s,'.-]+$/;
-  if(addressRegex.test(address)){
+  if (addressRegex.test(address)) {
     addressMessageElement.innerText = ''
   }
-  else{
+  else {
     addressMessageElement.innerText = 'Please enter a valid street address'
   }
 })
-cityElement.addEventListener('change', ($event) =>{
+cityElement.addEventListener('change', ($event) => {
   const city = $event.target.value
   const cityRegex = /^[a-zA-Z\s,'.-]+$/;
-  if(cityRegex.test(city)){
+  if (cityRegex.test(city)) {
     cityMessageElement.innerText = ''
   }
-  else{
+  else {
     cityMessageElement.innerText = 'Please enter a valid city'
   }
 })
-emailElement.addEventListener('change', ($event) =>{
+emailElement.addEventListener('change', ($event) => {
   const email = $event.target.value
   const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-  if(emailRegex.test(email)){
+  if (emailRegex.test(email)) {
     emailMessageElement.innerText = ''
   }
-  else{
+  else {
     emailMessageElement.innerText = 'Please enter a valid email'
   }
 })
 // const filledFormElements = ()
 
-orderButton.addEventListener('click', function(event){
+orderButton.addEventListener('click', function (event) {
   event.preventDefault()
   // if(filledFormElements){
   //   console.log('okay')
