@@ -179,14 +179,15 @@ emailElement.addEventListener('change', ($event) => {
     emailMessageElement.innerText = 'Please enter a valid email'
   }
 })
-const filledFormElements = (firstNameElement, lastNameElement, addressElement, cityElement, emailElement)
+const filledFormElements = [firstNameElement, lastNameElement, addressElement, cityElement, emailElement]
 
 orderButton.addEventListener('click', function (event) {
   event.preventDefault()
-  if(filledFormElements){
+  const validFilledFormElements = filledFormElements.every(element => (element.innerText = ''))
+  if (validFilledFormElements) {
     console.log('okay')
   }
-  else{
+  else {
     console.log('nope')
   }
 
