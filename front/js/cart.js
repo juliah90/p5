@@ -128,7 +128,7 @@ const addressMessageElement = document.getElementById('addressErrorMsg')
 const cityMessageElement = document.getElementById('cityErrorMsg')
 const emailMessageElement = document.getElementById('emailErrorMsg')
 
-function validateFirstNameElement(firstName, firstNameMessageElement){
+function validateFirstNameElement(firstName, firstNameMessageElement) {
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(firstName)) {
     firstNameMessageElement.innerText = '';
@@ -143,14 +143,14 @@ function validateFirstNameElement(firstName, firstNameMessageElement){
 firstNameElement.addEventListener('change', ($event) => {
   const firstName = $event.target.value
   const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
-  if(firstNameElementValid){
+  if (firstNameElementValid) {
     console.log('First Name is Valid')
   }
-  else{
+  else {
     console.log('First Name is Invalid')
   }
 })
-function validateLastNameElement(lastName, lastNameMessageElement){
+function validateLastNameElement(lastName, lastNameMessageElement) {
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(lastName)) {
     lastNameMessageElement.innerText = '';
@@ -171,56 +171,93 @@ lastNameElement.addEventListener('change', ($event) => {
     console.log('Last Name is Invalid')
   }
 })
-addressElement.addEventListener('change', ($event) => {
-  const address = $event.target.value
+function validateAddressElement(address, addressMessageElement) {
   const addressRegex = /^((\d)+) [a-zA-Z0-9\s,'.-]+$/;
   if (addressRegex.test(address)) {
     addressMessageElement.innerText = ''
+    return true;
   }
   else {
     addressMessageElement.innerText = 'Please enter a valid street address'
+    return false;
+  }
+}
+addressElement.addEventListener('change', ($event) => {
+  const address = $event.target.value
+  const addressElementValid = validateAddressElement(address, addressMessageElement)
+  if (addressElementValid) {
+    console.log('Address is Valid')
+  }
+  else {
+    console.log('Address is Invalid')
   }
 })
-cityElement.addEventListener('change', ($event) => {
-  const city = $event.target.value
+function validateCityElement(city, cityMessageElement) {
   const cityRegex = /^[a-zA-Z\s,'.-]+$/;
   if (cityRegex.test(city)) {
     cityMessageElement.innerText = ''
+    return true;
   }
   else {
     cityMessageElement.innerText = 'Please enter a valid city'
+    return false;
   }
+}
+cityElement.addEventListener('change', ($event) => {
+  const city = $event.target.value
+  const cityElementValid = validateCityElement(city, cityMessageElement)
+  if (cityElementValid) {
+    console.log('City is Valid')
+  }
+  else {
+    console.log('City is Invalid')
+  }
+
 })
-emailElement.addEventListener('change', ($event) => {
-  const email = $event.target.value
+function validateEmailElement(email, emailMessageElement) {
   const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   if (emailRegex.test(email)) {
     emailMessageElement.innerText = ''
+    return true;
   }
   else {
     emailMessageElement.innerText = 'Please enter a valid email'
+    return false;
+  }
+}
+emailElement.addEventListener('change', ($event) => {
+  const email = $event.target.value
+  const emailElementValid = validateEmailElement(email, emailMessageElement)
+  if(emailElementValid){
+    console.log('Email is Valid')
+  }
+  else{
+    console.log('Email is Invalid')
   }
 })
-// const filledFormElements = [firstNameElement, lastNameElement, addressElement, cityElement, emailElement]
-
 
 orderButton.addEventListener('click', function (event) {
   event.preventDefault()
-   
-    const firstName = firstNameElement.value
-    const lastName = lastNameElement.value
-    const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
-    const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
-    const allFieldsValid = [firstNameElementValid, lastNameElementValid]
-    if (allFieldsValid) {
-      console.log('okay')
-    }
-    else {
-      console.log('nope')
-    }
+
+  const firstName = firstNameElement.value
+  const lastName = lastNameElement.value
+  const address = addressElement.value
+  const city = cityElement.value
+  const email = emailElement.value
+  const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
+  const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
+  const addressElementValid = validateAddressElement(address, addressMessageElement)
+  const cityElementValid = validateCityElement(city, cityMessageElement)
+  const emailElementValid= validateEmailElement(email, emailMessageElement)
+  const allFieldsValid = [firstNameElementValid, lastNameElementValid, addressElementValid, cityElementValid, emailElementValid]
+  if (allFieldsValid.every(Boolean)) {
+    console.log('okay')
+  }
+  else {
+    console.log('nope')
+  }
 
 
-  //TODO validate fields when clicked
   //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
   //TODO get the order id from the response(fetch)
   //TODO clear the cart
