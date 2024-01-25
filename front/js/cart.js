@@ -208,6 +208,7 @@ orderButton.addEventListener('click', function (event) {
   event.preventDefault()
    
     const firstName = firstNameElement.value
+    const lastName = lastNameElement.value
     const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
     const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
     const allFieldsValid = [firstNameElementValid, lastNameElementValid]
