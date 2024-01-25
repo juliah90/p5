@@ -128,8 +128,7 @@ const addressMessageElement = document.getElementById('addressErrorMsg')
 const cityMessageElement = document.getElementById('cityErrorMsg')
 const emailMessageElement = document.getElementById('emailErrorMsg')
 
-firstNameElement.addEventListener('change', ($event) => {
-  const firstName = $event.target.value
+function validateFirstNameElement(firstName, firstNameMessageElement){
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(firstName)) {
     firstNameMessageElement.innerText = '';
@@ -137,7 +136,17 @@ firstNameElement.addEventListener('change', ($event) => {
   else {
     firstNameMessageElement.innerText = 'Please enter a valid first name';
   }
-  console.log(nameRegex.test(firstName));
+}
+
+firstNameElement.addEventListener('change', ($event) => {
+  const firstName = $event.target.value
+  const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
+  if(firstNameElementValid){
+    console.log('First Name is Valid')
+  }
+  else{
+    console.log('First Name is Invalid')
+  }
 })
 lastNameElement.addEventListener('change', ($event) => {
   const lastName = $event.target.value
@@ -179,17 +188,21 @@ emailElement.addEventListener('change', ($event) => {
     emailMessageElement.innerText = 'Please enter a valid email'
   }
 })
-const filledFormElements = [firstNameElement, lastNameElement, addressElement, cityElement, emailElement]
+// const filledFormElements = [firstNameElement, lastNameElement, addressElement, cityElement, emailElement]
+
 
 orderButton.addEventListener('click', function (event) {
   event.preventDefault()
-  const validFilledFormElements = filledFormElements.every(element => (element.innerText = ''))
-  if (validFilledFormElements) {
-    console.log('okay')
-  }
-  else {
-    console.log('nope')
-  }
+   
+    const firstName = firstNameElement.value
+    const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
+    if (firstNameElementValid) {
+      console.log('okay')
+    }
+    else {
+      console.log('nope')
+    }
+
 
   //TODO validate fields when clicked
   //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
