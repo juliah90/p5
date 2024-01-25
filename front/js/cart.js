@@ -132,9 +132,11 @@ function validateFirstNameElement(firstName, firstNameMessageElement){
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(firstName)) {
     firstNameMessageElement.innerText = '';
+    return true;
   }
   else {
     firstNameMessageElement.innerText = 'Please enter a valid first name';
+    return false;
   }
 }
 
@@ -148,14 +150,25 @@ firstNameElement.addEventListener('change', ($event) => {
     console.log('First Name is Invalid')
   }
 })
-lastNameElement.addEventListener('change', ($event) => {
-  const lastName = $event.target.value
+function validateLastNameElement(lastName, lastNameMessageElement){
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(lastName)) {
     lastNameMessageElement.innerText = '';
+    return true;
   }
   else {
-    lastNameMessageElement.innerText = 'Please enter a valid last name'
+    lastNameMessageElement.innerText = 'Please enter a valid last name';
+    return false;
+  }
+}
+lastNameElement.addEventListener('change', ($event) => {
+  const lastName = $event.target.value
+  const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
+  if (lastNameElementValid) {
+    console.log('Last Name is Valid');
+  }
+  else {
+    console.log('Last Name is Invalid')
   }
 })
 addressElement.addEventListener('change', ($event) => {
@@ -196,7 +209,9 @@ orderButton.addEventListener('click', function (event) {
    
     const firstName = firstNameElement.value
     const firstNameElementValid = validateFirstNameElement(firstName, firstNameMessageElement)
-    if (firstNameElementValid) {
+    const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
+    const allFieldsValid = [firstNameElementValid, lastNameElementValid]
+    if (allFieldsValid) {
       console.log('okay')
     }
     else {
