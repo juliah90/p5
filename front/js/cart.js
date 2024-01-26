@@ -4,10 +4,8 @@ const totalPriceElement = document.getElementById('totalPrice');
 fetch('http://localhost:3000/api/products')
   .then(response => response.json())
   .then(products => {
-    // Retrieve the array from local storage
     const storedArrayString = localStorage.getItem('cart');
 
-    // Parse the string into a JavaScript array
     const cart = JSON.parse(storedArrayString) || [];
     // console.log(storedArray)
     const cartContainer = document.getElementById('cart__items');
@@ -45,7 +43,6 @@ fetch('http://localhost:3000/api/products')
                   </div>
               </div>
           </div>`;
-      // addEventListener to button that changes item quantity
       const quantityInput = cartItemElement.querySelector('.itemQuantity');
 
       quantityInput.addEventListener('change', () => {
@@ -60,12 +57,10 @@ fetch('http://localhost:3000/api/products')
         updateTotals(product.price, quantityUpdate);
         // console.log(updateTotals)
       });
-      // addEventListener to delete button
       const deleteButton = cartItemElement.querySelector('.deleteItem');
       // console.log(deleteButton)
       deleteButton.addEventListener('click', ($event) => {
         // console.log($event.target.closest('article').dataset.color)
-        // delete item from cart
         const indexToRemove = cart.findIndex(item => item.id === cartItem.id && item.selectedColor === cartItem.selectedColor);
         if (indexToRemove !== -1) {
           cart.splice(indexToRemove, 1);
@@ -73,26 +68,22 @@ fetch('http://localhost:3000/api/products')
           // console.log(updateLocalStorage)
         }
 
-        // Remove item from page
         cartItemElement.remove();
 
-        // Update totals after delete
         updateTotals(product.price, -cartItem.selectedQuantity);
       });
 
       updateTotals(product.price, cartItem.selectedQuantity)
 
       cartContainer.appendChild(cartItemElement);
-    }//its working, gotta figure out update
+    }
     /**
      * 
      * @param {any} cartArray - update local storage with new item information
      */
     function updateLocalStorage(cartArray) {
       localStorage.setItem('cart', JSON.stringify(cartArray));
-    }// local storage update for sure this time
-    // console.log(updateLocalStorage)
-    // Insert each item from the storedArray into the cartContainer
+    }
     cart.forEach(createCartItem);
   })
 /**
@@ -228,10 +219,10 @@ function validateEmailElement(email, emailMessageElement) {
 emailElement.addEventListener('change', ($event) => {
   const email = $event.target.value
   const emailElementValid = validateEmailElement(email, emailMessageElement)
-  if(emailElementValid){
+  if (emailElementValid) {
     console.log('Email is Valid')
   }
-  else{
+  else {
     console.log('Email is Invalid')
   }
 })
@@ -248,14 +239,17 @@ orderButton.addEventListener('click', function (event) {
   const lastNameElementValid = validateLastNameElement(lastName, lastNameMessageElement)
   const addressElementValid = validateAddressElement(address, addressMessageElement)
   const cityElementValid = validateCityElement(city, cityMessageElement)
-  const emailElementValid= validateEmailElement(email, emailMessageElement)
+  const emailElementValid = validateEmailElement(email, emailMessageElement)
   const allFieldsValid = [firstNameElementValid, lastNameElementValid, addressElementValid, cityElementValid, emailElementValid]
   if (allFieldsValid.every(Boolean)) {
-    console.log('okay')
+    console.log('All Fields Validated')
   }
   else {
-    console.log('nope')
+    console.log('Please Correct Errors')
   }
+  // const userOrder = localStorage.cart
+  // console.log(userOrder)
+  // array.map(function(currentValue, index, arr), thisValue)
 
 
   //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
