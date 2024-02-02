@@ -247,10 +247,39 @@ orderButton.addEventListener('click', function (event) {
   else {
     console.log('Please Correct Errors')
   }
-  // const userOrder = localStorage.cart
-  // console.log(userOrder)
-  // array.map(function(currentValue, index, arr), thisValue)
 
+  const order = {
+    "contact": {
+      "firstName": "Eddie",
+      "lastName": "Spaghetti",
+      "address": "123 lane st",
+      "city": "silverdale",
+      "email": "bob@yahoo.com"
+    },
+    "products": [
+      "107fb5b75607497b96722bda5b504926"
+    ]
+  }
+  const cart = JSON.parse(localStorage.getItem("cart")||"[]")
+  // console.log(cart)
+  const products = cart.map(item => item.id);
+  const contact = {firstName, lastName, address, city, email}
+  // console.log(products, contact)
+  // userOrder.map(userOrderArray)
+  const userOrder = [products, contact]
+  console.log(userOrder)
+  // array.map(function(currentValue, index, arr), thisValue)
+  fetch(' http://localhost:3000/api/order', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userOrder),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
 
   //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
   //TODO get the order id from the response(fetch)

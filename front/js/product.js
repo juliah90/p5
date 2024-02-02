@@ -54,4 +54,7 @@ cartButton.addEventListener('click', () => {
     }
     // Update the local storage with the modified cart
     localStorage.setItem('cart', JSON.stringify(cart));
+    alert('Item Added to Cart');
+    // javascript alert message to show item added to cart
 });
+
