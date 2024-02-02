@@ -248,43 +248,45 @@ orderButton.addEventListener('click', function (event) {
     console.log('Please Correct Errors')
   }
 
-  const order = {
-    "contact": {
-      "firstName": "Eddie",
-      "lastName": "Spaghetti",
-      "address": "123 lane st",
-      "city": "silverdale",
-      "email": "bob@yahoo.com"
-    },
-    "products": [
-      "107fb5b75607497b96722bda5b504926"
-    ]
-  }
-  const cart = JSON.parse(localStorage.getItem("cart")||"[]")
+  const cart = JSON.parse(localStorage.getItem("cart") || "[]")
   // console.log(cart)
   const products = cart.map(item => item.id);
-  const contact = {firstName, lastName, address, city, email}
+  console.log(products)
+  const contact = { firstName, lastName, address, city, email }
   // console.log(products, contact)
   // userOrder.map(userOrderArray)
   const userOrder = [products, contact]
   console.log(userOrder)
+  const order = {
+    "contact": {
+      firstName,
+      lastName,
+      address,
+      city,
+      email
+    },
+    products
+  }
+  console.log(order)
   // array.map(function(currentValue, index, arr), thisValue)
-  fetch('http://localhost:3000/api/order', {
+  fetch('http://localhost:3000/api/products/order', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-    'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(userOrder),
+    body: JSON.stringify(order),
     cache: 'default'
   })
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-    })
+      const orderId = data.orderId;
 
-  //TODO submit the order to the backend(use the javascript array map method to prepare the products array)
-  //TODO get the order id from the response(fetch)
-  //TODO clear the cart
-  //TODO redirect the user to the confirmation page with the order id (location.assign)
+      localStorage.setItem('orderId', orderId);
+      console.log(orderId)
+
+      // localStorage.clear();
+
+       window.location.assign(`http://127.0.0.1:5500/front/html/confirmation.html?orderId=${orderId}`)
+    })
 });
