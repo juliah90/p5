@@ -269,7 +269,7 @@ orderButton.addEventListener('click', function (event) {
   const userOrder = [products, contact]
   console.log(userOrder)
   // array.map(function(currentValue, index, arr), thisValue)
-  fetch(' http://localhost:3000/api/order', {
+  fetch(' https://localhost:3000/api/order', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
