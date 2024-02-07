@@ -285,7 +285,7 @@ orderButton.addEventListener('click', function (event) {
       localStorage.setItem('orderId', orderId);
       console.log(orderId)
 
-      // localStorage.clear();
+      localStorage.clear();
 
        window.location.assign(`http://127.0.0.1:5500/front/html/confirmation.html?orderId=${orderId}`)
     })
