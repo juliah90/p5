@@ -14,8 +14,9 @@ fetch(`http://localhost:3000/api/products/${id}`)
 
 
 /**
+ * Insert product information on page
  * 
- * @param {any} product - individual product information selected by user
+ * @param {object} product - individual product information selected by user
  */
 function insertProductInformation(product) {
     console.log(product)

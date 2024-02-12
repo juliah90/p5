@@ -12,8 +12,9 @@ fetch('http://localhost:3000/api/products')
     // console.log(cartContainer)
 
     /**
+     * Inputs item in cart
      * 
-     * @param {any}  -   Function to create and insert a cart item element
+     * @param {object}  -   Function to create and insert a cart item element
      */
     function createCartItem(cartItem) {
       const product = products.find(p => cartItem.id === p._id)
@@ -78,8 +79,9 @@ fetch('http://localhost:3000/api/products')
       cartContainer.appendChild(cartItemElement);
     }
     /**
+     * Updates cart local storage
      * 
-     * @param {any} cartArray - update local storage with new item information
+     * @param {string} cartArray - update local storage with new item information
      */
     function updateLocalStorage(cartArray) {
       localStorage.setItem('cart', JSON.stringify(cartArray));
@@ -87,9 +89,13 @@ fetch('http://localhost:3000/api/products')
     cart.forEach(createCartItem);
   })
 /**
+ * Updates cart total price
  * 
- * @param {any} price - update total price in webpage and local storage
- * @param {any} quantity - update total quantity in webpage and local storage
+ * @param {string} price - update total price in webpage and local storage
+ * 
+ * Updates cart total quantity
+ * 
+ * @param {string} quantity - update total quantity in webpage and local storage
  */
 function updateTotals(price, quantity) {
   // Get the current values from page
@@ -118,7 +124,16 @@ const lastNameMessageElement = document.getElementById('lastNameErrorMsg')
 const addressMessageElement = document.getElementById('addressErrorMsg')
 const cityMessageElement = document.getElementById('cityErrorMsg')
 const emailMessageElement = document.getElementById('emailErrorMsg')
-
+/**
+ * Checks first name validation
+ * 
+ * @param {string} firstName  - validate first name
+ * 
+ * Error message for failed first name validation
+ * 
+ * @param {string} firstNameMessageElement  - failed validation first name error message
+ * @returns 
+ */
 function validateFirstNameElement(firstName, firstNameMessageElement) {
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(firstName)) {
@@ -141,6 +156,16 @@ firstNameElement.addEventListener('change', ($event) => {
     console.log('First Name is Invalid')
   }
 })
+/**
+ * Validates last name
+ * 
+ * @param {string} lastName - validate last name
+ * 
+ * Error message for failed last name validation
+ * 
+ * @param {string} lastNameMessageElement - failed validation last name error message
+ * @returns 
+ */
 function validateLastNameElement(lastName, lastNameMessageElement) {
   const nameRegex = /^[a-zA-Z]+$/;
   if (nameRegex.test(lastName)) {
@@ -162,6 +187,16 @@ lastNameElement.addEventListener('change', ($event) => {
     console.log('Last Name is Invalid')
   }
 })
+/**
+ * validates address
+ * 
+ * @param {string} address - address validation
+ * 
+ * Error message for failed address validation
+ * 
+ * @param {string} addressMessageElement - failed validation address error message
+ * @returns 
+ */
 function validateAddressElement(address, addressMessageElement) {
   const addressRegex = /^((\d)+) [a-zA-Z0-9\s,'.-]+$/;
   if (addressRegex.test(address)) {
@@ -183,6 +218,16 @@ addressElement.addEventListener('change', ($event) => {
     console.log('Address is Invalid')
   }
 })
+/**
+ * Validate city
+ * 
+ * @param {string} city - city validation
+ * 
+ * Error message for failed city validation
+ * 
+ * @param {string} cityMessageElement - failed validation city error message
+ * @returns 
+ */
 function validateCityElement(city, cityMessageElement) {
   const cityRegex = /^[a-zA-Z\s,'.-]+$/;
   if (cityRegex.test(city)) {
@@ -205,6 +250,16 @@ cityElement.addEventListener('change', ($event) => {
   }
 
 })
+/**
+ * Validates email
+ * 
+ * @param {string} email - validate email
+ * 
+ * Error message for failed email validation
+ * 
+ * @param {string} emailMessageElement - failed validation email error message
+ * @returns 
+ */
 function validateEmailElement(email, emailMessageElement) {
   const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
   if (emailRegex.test(email)) {
@@ -287,6 +342,6 @@ orderButton.addEventListener('click', function (event) {
 
       localStorage.clear();
 
-       window.location.assign(`http://127.0.0.1:5500/front/html/confirmation.html?orderId=${orderId}`)
+      window.location.assign(`http://127.0.0.1:5500/front/html/confirmation.html?orderId=${orderId}`)
     })
 });
