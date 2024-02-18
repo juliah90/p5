@@ -89,12 +89,9 @@ fetch('http://localhost:3000/api/products')
     cart.forEach(createCartItem);
   })
 /**
- * Updates cart total price
+ * Updates cart total price and quantity
  * 
  * @param {string} price - update total price in webpage and local storage
- * 
- * Updates cart total quantity
- * 
  * @param {string} quantity - update total quantity in webpage and local storage
  */
 function updateTotals(price, quantity) {
@@ -125,12 +122,9 @@ const addressMessageElement = document.getElementById('addressErrorMsg')
 const cityMessageElement = document.getElementById('cityErrorMsg')
 const emailMessageElement = document.getElementById('emailErrorMsg')
 /**
- * Checks first name validation
+ * Checks first name validation and error message
  * 
  * @param {string} firstName  - validate first name
- * 
- * Error message for failed first name validation
- * 
  * @param {string} firstNameMessageElement  - failed validation first name error message
  * @returns 
  */
@@ -157,12 +151,9 @@ firstNameElement.addEventListener('change', ($event) => {
   }
 })
 /**
- * Validates last name
+ * last name validation and error message
  * 
  * @param {string} lastName - validate last name
- * 
- * Error message for failed last name validation
- * 
  * @param {string} lastNameMessageElement - failed validation last name error message
  * @returns 
  */
@@ -188,12 +179,9 @@ lastNameElement.addEventListener('change', ($event) => {
   }
 })
 /**
- * validates address
+ * address validation and error message
  * 
  * @param {string} address - address validation
- * 
- * Error message for failed address validation
- * 
  * @param {string} addressMessageElement - failed validation address error message
  * @returns 
  */
@@ -219,12 +207,9 @@ addressElement.addEventListener('change', ($event) => {
   }
 })
 /**
- * Validate city
+ * city validation and error message
  * 
  * @param {string} city - city validation
- * 
- * Error message for failed city validation
- * 
  * @param {string} cityMessageElement - failed validation city error message
  * @returns 
  */
@@ -251,12 +236,9 @@ cityElement.addEventListener('change', ($event) => {
 
 })
 /**
- * Validates email
+ * email validation and error message
  * 
  * @param {string} email - validate email
- * 
- * Error message for failed email validation
- * 
  * @param {string} emailMessageElement - failed validation email error message
  * @returns 
  */
